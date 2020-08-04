@@ -21,7 +21,7 @@ docker run -v ${PWD}/reports:/home/chrome/reports --rm unicom/lighthouse lightho
 
 4. Get JSON report on screen
 ```
-docker run -v ${PWD}/report:/home/chrome/reports --rm unicom/lighthouse lighthouse --chrome-flags="--headless --disable-gpu --no-sandbox" --output json --no-enable-error-reporting --output-path stdout --quiet https://www.google.com/
+docker run -v ${PWD}/reports:/home/chrome/reports --rm unicom/lighthouse lighthouse --chrome-flags="--headless --disable-gpu --no-sandbox" --output json --no-enable-error-reporting --output-path stdout --quiet https://www.google.com/
 ```
 
 ### Lighthouse flags
