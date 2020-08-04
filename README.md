@@ -19,6 +19,10 @@ docker run -v ${PWD}/reports:/home/chrome/reports --rm unicom/lighthouse lightho
 
 3. Read report in directory `reports`
 
+4. Get JSON report on screen
+```
+docker run -v ${PWD}/report:/home/chrome/reports --rm unicom/lighthouse lighthouse --chrome-flags="--headless --disable-gpu --no-sandbox" --output json --no-enable-error-reporting --output-path stdout --quiet https://unicom24.ru/
+```
 
 ### Lighthouse flags
 
