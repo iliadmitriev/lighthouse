@@ -37,7 +37,9 @@ docker run -v ${PWD}/reports:/home/chrome/reports --rm unicom/lighthouse lightho
 | --gather-mode, -G              | Collect artifacts from a connected browser and save to disk. (Artifacts folder path may optionally be provided). If audit-mode is not also enabled, the run will quit early.|
 | --audit-mode, -A               | Process saved artifacts from disk. (Artifacts folder path may be provided, otherwise defaults to ./latest-run/)|
 |--output      | Reporter for the results, supports multiple values. choices: "json", "html", "csv"|
-|--output-path | The file path to output the results. Use 'stdout' to write to stdout. If using JSON output, default is stdout. If using HTML or CSV output, default is a file in the working directory with a name based on the test URL and date. If using multiple outputs, --output-path is appended with the standard extension for each output type. "reports/my-run" -> "reports/my-run.report.html", "reports/my-run.report.json", etc. Example: --output-path=./lighthouse-results.html|
+|--output-path |  The file path to output the results. Use 'stdout' to write to stdout. If using JSON output, default is stdout. If using HTML or CSV output, default is a file in the working directory with a name based on the test URL and date. If using multiple outputs, --output-path is appended with the standard extension for each output type. "reports/my-run" -> "reports/my-run.report.html", "reports/my-run.report.json", etc. Example: --output-path=./lighthouse-results.html |
+|--emulated-form-factor| Controls the emulated device form factor (mobile vs. desktop) if not disabled [choices: "mobile", "desktop", "none"] [default: "mobile"] |
+|--throttling-method| Controls throttling method [choices: "devtools", "provided", "simulate"] |
 
 
 ### Chromium flags
