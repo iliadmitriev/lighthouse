@@ -1,28 +1,69 @@
 # Lighthouse CLI with Headless Chromium
 
-## Building
+Tool for testing UI and Front-end services performance via CLI with CI
+
+Powered by
+* [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
+* [Google Chromium](https://www.chromium.org)
+* [Docker](https://www.docker.com)
+* [Alpine Linux](https://alpinelinux.org)
+
+
+## Building lighthouse docker image
 ```
-docker build -t unicom/lighthouse ./
+docker build -t lighthouse -f Dockerfile ./
 ```
 
 ## Running
 
 1. Create directory `reports`
-```
+```shell
 mkdir reports
 ```
 
-2. Run container
-```
-docker run -v ${PWD}/reports:/home/chrome/reports --rm unicom/lighthouse lighthouse --chrome-flags="--headless --disable-gpu --no-sandbox" --no-enable-error-reporting https://www.google.com/
+2. Run container with volume and store report as HTML
+
+```shell
+docker run -i --rm -v ${PWD}/reports:/app \
+      lighthouse lighthouse https://www.google.com \
+      --chrome-flags="--headless --no-sandbox" \
+      --no-enable-error-reporting --quiet
 ```
 
-3. Read report in directory `reports`
+Report will be generated in `reports` directory
 
-4. Get JSON report on screen
+3. Get JSON report on screen
+
+
+```shell
+docker run -i --rm lighthouse lighthouse https://www.google.com \
+      --chrome-flags="--headless --no-sandbox" \
+      --no-enable-error-reporting --quiet \
+      --output=json 
 ```
-docker run -v ${PWD}/reports:/home/chrome/reports --rm unicom/lighthouse lighthouse --chrome-flags="--headless --disable-gpu --no-sandbox" --output json --no-enable-error-reporting --output-path stdout --quiet https://www.google.com/
+
+4. Get perfomance score from JSON report for desktop and mobile preset
+
+Desktop:
+
+```shell
+docker run -i --rm lighthouse lighthouse https://www.google.com \
+      --chrome-flags="--headless --no-sandbox" \
+      --no-enable-error-reporting --quiet \
+      --preset=desktop \
+      --output=json |
+      jq ".categories.performance.score"
 ```
+
+Mobile:
+```shell
+docker run -i --rm lighthouse lighthouse https://www.google.com \
+      --chrome-flags="--headless --no-sandbox" \
+      --no-enable-error-reporting --quiet \
+      --output=json |
+      jq ".categories.performance.score"
+```
+
 
 ### Lighthouse flags
 
